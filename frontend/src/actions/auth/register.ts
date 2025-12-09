@@ -1,8 +1,7 @@
 "use server"
-import { SignupFormSchema, FormState } from '@/app/lib/definitions'
-import { createSession } from '../lib/session';
-import { redirect } from 'next/navigation';
- 
+import { FormState, SignupFormSchema } from "@/app/lib/definitions";
+import { redirect } from "next/navigation";
+
 export async function signup(state: FormState, formData: FormData) {
     //using zod to validate form data
     const validatedFields = SignupFormSchema.safeParse({
@@ -38,7 +37,7 @@ export async function signup(state: FormState, formData: FormData) {
     }
 
     //create session and set cookie
-    await createSession(user.id)
+    // await createSession(user.access_token, user.refresh_token)
     redirect('/profile')
  
 }

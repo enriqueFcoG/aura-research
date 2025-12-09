@@ -1,5 +1,6 @@
 "use client";
-import { signup } from "@/app/actions/auth";
+
+import { signup } from "@/actions/auth/register";
 import { useActionState } from "react";
 
 const Register = () => {
