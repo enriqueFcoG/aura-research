@@ -1,98 +1,229 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# **Aura research (Backend API)**
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+A production‑ready backend REST API built with **NestJS**, **TypeORM**,
+**PostgreSQL**, **Passport**, and **Jest**.\
+This project follows modern best practices using the most recent
+versions of NestJS.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+------------------------------------------------------------------------
 
-## Description
+## 🚀 **Tech Stack**
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+### **NestJS**
 
-## Project setup
+Chosen as the main backend framework due to:
 
-```bash
-$ pnpm install
+-   **Modular architecture** ideal for scalable applications.
+-   **First‑class TypeScript support**.
+-   **Powerful CLI** for generating modules, controllers, and services.
+-   **Dependency Injection** built‑in for clean architecture.
+-   **Excellent integration** with Passport, TypeORM, caching,
+    validation pipes, and more.
+
+### **TypeORM**
+
+Selected as the ORM because it provides:
+
+-   **ActiveRecord and DataMapper patterns**.
+-   **Migrations** for schema versioning.
+-   **Native NestJS integration**.
+-   **Wide SQL database support**, especially PostgreSQL.
+
+### **PostgreSQL**
+
+The database of choice thanks to:
+
+-   **Strong indexing and query performance**.
+-   **Widely supported in cloud providers**.
+-   **Perfect pairing** with TypeORM.
+
+### **Passport (Authentication)**
+
+Passport is used for authentication because:
+
+-   **Large ecosystem of strategies** (local, JWT, OAuth2, etc.).
+-   **Seamless NestJS integration** with guards and decorators.
+-   **Clear separation of concerns**: validation, serialization, session
+    logic.
+
+### **Jest**
+
+Built‑in test runner used for:
+
+-   **Unit testing services, controllers, and guards**.
+-   **Mocking dependencies** via Nest's Testing Module.
+-   **Fast execution and watch mode**.
+
+------------------------------------------------------------------------
+
+## 📁 **Project Structure (Simplified)**
+
+``` bash
+/
+├── src/
+│   ├── auth/
+│   │   ├── auth.controller.ts
+│   │   ├── auth.service.ts
+│   │   ├── auth.module.ts
+│   │   ├── strategies/
+│   │   └── guards/
+│   ├── users/
+│   ├── migrations/
+│   ├── shared/
+│   ├── database/
+│   ├── app.module.ts
+│   └── main.ts
+├── test/
+│   └── *.spec.ts
+├── ormconfig.ts
+├── jest.config.js
+└── package.json
 ```
 
-## Compile and run the project
+------------------------------------------------------------------------
 
-```bash
-# development
-$ pnpm run start
+## 🛠️ **Prerequisites**
 
-# watch mode
-$ pnpm run start:dev
+-   **Node.js** 18+
+-   **pnpm** (recommended) or npm/yarn
 
-# production mode
-$ pnpm run start:prod
+------------------------------------------------------------------------
+
+## ⚙️ **Environment Variables**
+
+Create a `.env` file:
+
+``` env
+DB_HOST=localhost
+DB_PORT=5432
+DB_USERNAME=postgres
+DB_PASSWORD=password
+DB_NAME=aura
+SECRET_KEY=TEst
 ```
 
-## Run tests
+------------------------------------------------------------------------
 
-```bash
-# unit tests
-$ pnpm run test
+## 📦 **Install Dependencies**
 
-# e2e tests
-$ pnpm run test:e2e
-
-# test coverage
-$ pnpm run test:cov
+``` bash
+pnpm install
 ```
 
-## Deployment
+or
 
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
-
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
-
-```bash
-$ pnpm install -g @nestjs/mau
-$ mau deploy
+``` bash
+npm install
 ```
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+------------------------------------------------------------------------
 
-## Resources
+## 🗄️ **Run Database Migrations**
 
-Check out a few resources that may come in handy when working with NestJS:
+``` bash
+pnpm run migration:generate
+```
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+``` bash
+pnpm run migration:run
+```
 
-## Support
+------------------------------------------------------------------------
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+## 🗄️ **Revert Database Migrations**
 
-## Stay in touch
+``` bash
+pnpm run migration:revert
+```
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+------------------------------------------------------------------------
 
-## License
+## 🏃 **Start Development Server**
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+``` bash
+pnpm start:dev
+```
+
+API will run at:
+
+    http://localhost:3001
+
+------------------------------------------------------------------------
+
+## 🏗️ **Build for Production**
+
+``` bash
+pnpm build
+```
+
+Run the compiled app:
+
+``` bash
+pnpm start
+```
+
+
+------------------------------------------------------------------------
+
+## ✔️ **Running Tests (Jest)**
+
+Run all tests:
+
+``` bash
+pnpm test
+```
+
+Run in watch mode:
+
+``` bash
+pnpm test:watch
+```
+
+Run tests with coverage:
+
+``` bash
+pnpm test:coverage
+```
+
+Example `package.json` scripts:
+
+``` json
+{
+  "scripts": {
+    "build": "nest build",
+    "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
+    "start": "nest start",
+    "start:dev": "nest start --watch",
+    "start:debug": "nest start --debug --watch",
+    "start:prod": "node dist/src/main",
+    "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:cov": "jest --coverage",
+    "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
+    "test:e2e": "jest --config ./test/jest-e2e.json",
+    "typeorm": "typeorm-ts-node-commonjs -d typeorm.config.ts",
+    "migration:generate": "npm run typeorm -- migration:generate src/migrations/initial",
+    "migration:run": "npm run typeorm -- migration:run",
+    "migration:revert": "npm run typeorm -- migration:revert",
+    "heroku-postbuild": "npm run build"
+  }
+}
+```
+
+------------------------------------------------------------------------
+
+## ✨ **Why This Stack?**
+
+This backend architecture is chosen for building reliable, maintainable,
+scalable APIs:
+
+-   **NestJS** enables clean modular organization and strong
+    conventions.
+-   **TypeORM + PostgreSQL** provide a robust relational foundation with
+    migrations.
+-   **Passport + JWT** ensure secure authentication.
+-   **Jest** guarantees correctness through automated testing.
+
+Ideal for production‑level applications, microservices, and enterprise
+systems.
