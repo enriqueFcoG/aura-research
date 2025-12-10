@@ -29,7 +29,7 @@ export async function signup(state: FormState, formData: FormData) {
     if(res.status === 409) {
         return {
             errors: {
-                email: "User already exist"
+                email: ["User already exist"]
             } 
         }
     }
