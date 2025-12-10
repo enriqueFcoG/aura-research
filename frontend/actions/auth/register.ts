@@ -26,10 +26,16 @@ export async function signup(state: FormState, formData: FormData) {
       body: JSON.stringify({ firstName, lastName, email, password }),
     });
 
+    if(res.status === 409) {
+        return {
+            errors: {
+                email: "User already exist"
+            } 
+        }
+    }
     const data = await res.json();
  
     const user = data
- 
     if (!user) {
         return {
             message: 'An error occurred while creating your account.',

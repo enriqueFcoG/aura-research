@@ -1,4 +1,6 @@
 import Link from "next/link";
+import Image from "next/image";
+// import Logo from "../../../public/logo.svg";
 
 export default function MainLayout({
   children,
@@ -8,7 +10,12 @@ export default function MainLayout({
   return (
     <div className="min-h-screen flex">
       <aside className="w-48 bg-primary-light text-gray-200 p-6 flex flex-col">
-        <h2 className="text-xl font-semibold mb-8">Aura</h2>
+        <Image 
+          src="/logo.svg"
+          alt="Aura Logo"
+          width={100}
+          height={40}
+        />
 
         <nav className="flex flex-col gap-4">
           <Link

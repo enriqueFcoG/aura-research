@@ -9,7 +9,6 @@ export const  authenticateUser = async ({ email, password }: {email:string, pass
 
   const user = await res.json();
 
-  // Example of domain logic:
   if (!user.access_token) return null;
 
   return {

@@ -7,7 +7,6 @@ interface UserTableProps {
 export default function UserTable({ users }: UserTableProps) {
   return (
     <div className="rounded-xl border border-gray-200 shadow-sm mt-6">
-      {/* Contenedor con scroll vertical */}
       <div className="max-h-96 overflow-y-auto">
         <table className="min-w-full divide-y divide-gray-200 bg-white">
           <thead className="bg-gray-50 sticky top-0 z-10">
