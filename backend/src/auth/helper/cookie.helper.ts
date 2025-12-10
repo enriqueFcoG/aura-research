@@ -5,14 +5,16 @@ export class CookieHelper {
     res.cookie('access_token', accessToken, {
       httpOnly: true,
       secure: true,
-      sameSite: 'lax',
+      sameSite: 'none',
+      path: '/',
       maxAge: 1000 * 60 * 15,
     });
 
     res.cookie('refresh_token', refreshToken, {
       httpOnly: true,
       secure: true,
-      sameSite: 'lax',
+      sameSite: 'none',
+      path: '/',
       maxAge: 1000 * 60 * 60 * 24 * 7,
     });
 
