@@ -27,6 +27,7 @@ export const getCurrentUser = async () => {
     credentials: "include",
     cache: "no-store",
   });
+  console.log("headers::::::: ", res.headers)
   console.log("res::::: ", res)
   if (!res.ok) return null;
 
