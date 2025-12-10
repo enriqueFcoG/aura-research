@@ -1,8 +1,11 @@
-import { Controller, Post, Body, Request, HttpStatus, HttpCode, UseGuards } from '@nestjs/common';
+import { Controller, Post, Body, Request, HttpStatus, HttpCode, UseGuards, Res } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { RegisterDto } from './dto/register.dto';
 import { SkipAuth } from './constants';
 import { LocalAuthGuard } from './local-auth.guard';
+import express from 'express';
+import { CookieHelper } from './helper/cookie.helper';
+
 
 @Controller('auth')
 export class AuthController {
@@ -18,7 +21,29 @@ export class AuthController {
   @UseGuards(LocalAuthGuard)
   @HttpCode(HttpStatus.OK)
   @Post('login')
-  async login(@Request() req) {
-    return this.authService.login(req.user);
+  async login(@Request() req, @Res({ passthrough: true }) res: express.Response) {
+    //since we are using passport (LocalAuthGuard) we don't need to validate the user here
+    const { accessToken, refreshToken } = await this.authService.login(
+    req.user.id,
+    req.user.email,
+  );
+
+  CookieHelper.setAuthCookies(res, accessToken, refreshToken);
+
+  return { message: 'Login success' };
+  }
+
+  @Post('logout')
+  async logout(
+    @Request() req: any,
+    @Res({ passthrough: true }) res: express.Response,
+  ) {
+    const user = req.user;
+
+    await this.authService.logout(user.sub);
+
+    CookieHelper.clearAuthCookies(res);
+
+    return { message: 'Logout success' };
   }
 }

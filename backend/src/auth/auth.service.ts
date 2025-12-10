@@ -8,6 +8,26 @@ import { JwtService } from '@nestjs/jwt';
 export class AuthService {
   constructor(private usersService: UsersService, private jwtService: JwtService) {}
 
+  async getTokens(userId: string, email: string) {
+    const payload = { sub: userId, email };
+
+    const accessToken = this.jwtService.sign(payload, {
+      secret: process.env.JWT_ACCESS_SECRET,
+      expiresIn: '15m',
+    });
+
+    const refreshToken = this.jwtService.sign(payload, {
+      secret: process.env.JWT_REFRESH_SECRET,
+      expiresIn: '7d',
+    });
+
+    return { accessToken, refreshToken };
+  }
+
+  async hashToken(token: string) {
+    return bcrypt.hash(token, 10);
+  }
+
   async register(registerDto: RegisterDto) {
     const hashPassword = await bcrypt.hash(registerDto.password, 10);
     registerDto.password = hashPassword;
@@ -28,12 +48,16 @@ export class AuthService {
     return null;
   }
 
-  async login(user: any) {
-    const payload = { username: user.email, sub: user.id };
-    const refresh_token = this.jwtService.sign(payload, { expiresIn: '7d' });
-    return {
-      access_token: this.jwtService.sign(payload, {expiresIn: "7d"}),
-      refresh_token
-    };
+  async login(userId: string, email: string) {
+    const { accessToken, refreshToken } = await this.getTokens(userId, email);
+
+    // TODO: save refresh token
+
+    return { accessToken, refreshToken };
+  }
+
+  async logout(userId: number) {
+    //TODO: remove refresh token
+    return true;
   }
 }

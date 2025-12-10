@@ -6,6 +6,7 @@ export async function logout() {
     await fetch(`${process.env.BACKEND_URL}/api/auth/logout`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
+      credentials: "include"
     });
 
     redirect('/')

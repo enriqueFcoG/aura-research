@@ -10,8 +10,8 @@ export const  getUsers = async () => {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
     },
+    credentials: "include",
     cache: "no-store",
   });
   if (!res.ok) return null;
@@ -28,8 +28,8 @@ export const getCurrentUser = async () => {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
     },
+    credentials: "include",
     cache: "no-store",
   });
   
@@ -47,8 +47,8 @@ export const getUser = async (id: number) => {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
     },
+    credentials: "include",
     cache: "no-store",
   });
   
@@ -67,8 +67,8 @@ export const updateUser = async (id: string, user: any) => {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
     },
+    credentials: "include",
     body: JSON.stringify(user),
     cache: "no-store",
   });
