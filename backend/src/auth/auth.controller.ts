@@ -3,7 +3,7 @@ import { AuthService } from './auth.service';
 import { RegisterDto } from './dto/register.dto';
 import { SkipAuth } from './constants';
 import { LocalAuthGuard } from './local-auth.guard';
-import express from 'express';
+import type { Response } from 'express';
 import { CookieHelper } from './helper/cookie.helper';
 
 
@@ -21,7 +21,7 @@ export class AuthController {
   @UseGuards(LocalAuthGuard)
   @HttpCode(HttpStatus.OK)
   @Post('login')
-  async login(@Request() req, @Res({ passthrough: true }) res: express.Response) {
+  async login(@Request() req, @Res({ passthrough: true }) res: Response) {
     //since we are using passport (LocalAuthGuard) we don't need to validate the user here
     const { accessToken, refreshToken } = await this.authService.login(
     req.user.id,
@@ -36,7 +36,7 @@ export class AuthController {
   @Post('logout')
   async logout(
     @Request() req: any,
-    @Res({ passthrough: true }) res: express.Response,
+    @Res({ passthrough: true }) res: Response,
   ) {
     const user = req.user;
 
