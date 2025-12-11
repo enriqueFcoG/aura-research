@@ -1,10 +1,5 @@
 import { User } from "@/shared/types";
 
-export const token = document.cookie
-  .split('; ')
-  .find(row => row.startsWith('access_token='))
-  ?.split('=')[1];
-
 export const  getUsers = async (): Promise<User[] | null > => {
   try {
     const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/users`, {
@@ -27,12 +22,6 @@ export const getCurrentUser = async (): Promise<User | null> => {
   try {
       const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/users/me`, {
     method: "GET",
-    headers: {
-    'Content-Type': 'application/json',
-    ...(process.env.NODE_ENV === 'production' && token
-      ? { Authorization: `Bearer ${token}` }
-      : {}),
-  },
     credentials: "include",
     cache: "no-store",
   });
