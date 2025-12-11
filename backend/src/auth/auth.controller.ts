@@ -5,18 +5,23 @@ import { SkipAuth } from './constants';
 import { LocalAuthGuard } from './local-auth.guard';
 import type { Response } from 'express';
 import { CookieHelper } from './helper/cookie.helper';
+import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 
-
+@ApiTags('auth')
 @Controller('auth')
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
+  @ApiOperation({ summary: 'Creates a new User' })
+  @ApiResponse({ status: 201, description: 'User object created' })
   @SkipAuth()
   @Post('register')
   register(@Body() registerDto: RegisterDto) {
     return this.authService.register(registerDto);
   }
   
+  @ApiOperation({ summary: 'Log in for user (create the access_token cookies)' })
+  @ApiResponse({ status: 200, description: 'Success message' })
   @SkipAuth()
   @UseGuards(LocalAuthGuard)
   @HttpCode(HttpStatus.OK)
@@ -33,6 +38,8 @@ export class AuthController {
     return { message: 'Login success' };
   }
 
+  @ApiOperation({ summary: 'Log in for user (delete the access_token cookies)' })
+  @ApiResponse({ status: 200, description: 'Success message' })
   @Post('logout')
   async logout(
     @Request() req: any,
