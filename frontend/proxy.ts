@@ -2,7 +2,6 @@ import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
 export  async function proxy(req: NextRequest) {
-  return NextResponse.next()
   console.log("Todas las cookies:", req.cookies); 
   const token = req.cookies.get("access_token")?.value;
   console.log("TOKEN ", token)
