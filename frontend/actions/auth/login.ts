@@ -1,4 +1,4 @@
-"use server"
+
 import { redirect } from "next/navigation";
 import { LoginState, SigninFormSchema } from "../../app/lib/definitions";
 import { authenticateUser } from "../../services/auth.service";

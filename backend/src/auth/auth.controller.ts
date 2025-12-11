@@ -28,6 +28,8 @@ export class AuthController {
     req.user.email,
   );
 
+  res.cookie('abby', "123456", { httpOnly: true, secure: true, sameSite: 'none', maxAge: 1000 * 60 * 15, });
+  
   CookieHelper.setAuthCookies(res, accessToken, refreshToken);
 
   return { message: 'Login success' };

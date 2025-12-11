@@ -1,10 +1,11 @@
+
 export const  authenticateUser = async ({ email, password }: {email:string, password:string}) => {
   try {
     if (process.env.NODE_ENV === "development") {
       process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
     }
     console.log("URL ",process.env.BACKEND_URL )
-    const res = await fetch(`${process.env.BACKEND_URL}/api/auth/login`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/auth/login`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     cache: "no-store",

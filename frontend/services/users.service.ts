@@ -1,16 +1,14 @@
-"use server"
-
+"use client"
 import { User } from "@/shared/types";
-import { cookies } from "next/headers";
 
 export const  getUsers = async () => {
-  console.log("URL API: ", process.env.BACKEND_URL)
-  const res = await fetch(`${process.env.BACKEND_URL}/api/users`, {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/users`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
     },
     credentials: "include",
+    cache: "no-store",
   });
   console.log("RES READING USERS: ", res)
   if (!res.ok) return null;
@@ -20,10 +18,8 @@ export const  getUsers = async () => {
   return users
 }
 export const getCurrentUser = async () => {
-  const cookieStore = cookies();
-  const token = (await cookieStore).get("access_token")?.value;
 
-  const res = await fetch(`${process.env.BACKEND_URL}/api/users/me`, {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/users/me`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -39,10 +35,8 @@ export const getCurrentUser = async () => {
   return users
 }
 export const getUser = async (id: number) => {
-  const cookieStore = cookies();
-  const token = (await cookieStore).get("access_token")?.value;
 
-  const res = await fetch(`${process.env.BACKEND_URL}/api/users/${id}`, {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/users/${id}`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -59,10 +53,8 @@ export const getUser = async (id: number) => {
 }
 
 export const updateUser = async (id: string, user: any) => {
-  const cookieStore = cookies();
-  const token = (await cookieStore).get("access_token")?.value;
 
-  const res = await fetch(`${process.env.BACKEND_URL}/api/users/${id}`, {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/users/${id}`, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",

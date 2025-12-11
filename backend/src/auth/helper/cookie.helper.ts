@@ -4,17 +4,17 @@ export class CookieHelper {
 static setAuthCookies(res: Response, accessToken: string, refreshToken: string) {
   res.cookie('access_token', accessToken, {
     httpOnly: true,
-    secure: false,
-    sameSite: 'lax',
-    //domain: 'localhost',   // clave: coincidir con frontend
+    secure: true,
+    sameSite: 'none',
+    //domain: 'non',   // clave: coincidir con frontend
     path: '/',             // clave: accesible en todas las rutas
     maxAge: 1000 * 60 * 15,
   });
 
   res.cookie('refresh_token', refreshToken, {
     httpOnly: true,
-    secure: false,
-    sameSite: 'lax',
+    secure: true,
+    sameSite: 'none',
     // domain: 'localhost',
     path: '/',
     maxAge: 1000 * 60 * 60 * 24 * 7,
