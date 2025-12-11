@@ -17,10 +17,7 @@ async function bootstrap() {
   app.enableCors({
     origin: "https://aura-research.vercel.app",
     credentials: true,
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization'],
   })
-  // app.enableCors()
   app.setGlobalPrefix('api');
   await app.listen(process.env.PORT ?? 3001);
 }

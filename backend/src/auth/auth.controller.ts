@@ -24,21 +24,13 @@ export class AuthController {
   async login(@Request() req, @Res({ passthrough: true }) res: Response) {
     //since we are using passport (LocalAuthGuard) we don't need to validate the user here
     const { accessToken, refreshToken } = await this.authService.login(
-    req.user.id,
-    req.user.email,
-  );
+      req.user.id,
+      req.user.email,
+    );
 
-  // CookieHelper.setAuthCookies(res, accessToken, refreshToken);
-  res.cookie('access_token', accessToken, {
-httpOnly: true,
-  secure: true,
-  sameSite: 'none',
-  path: '/',
-  domain: '.herokuapp.com',
-  maxAge: 1000 * 60 * 15,
-    });
+    CookieHelper.setAuthCookies(res, accessToken, refreshToken);
 
-  return { message: 'Login success' };
+    return { message: 'Login success' };
   }
 
   @Post('logout')
