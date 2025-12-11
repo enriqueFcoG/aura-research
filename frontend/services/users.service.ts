@@ -1,11 +1,8 @@
-"use server"
-
 import { User } from "@/shared/types";
-import { cookies } from "next/headers";
 
 export const  getUsers = async () => {
   try {
-    const res = await fetch(`${process.env.BACKEND_URL}/api/users`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/users`, {
     method: "GET",
     credentials: "include",
     cache: "no-store",
@@ -40,10 +37,8 @@ export const getCurrentUser = async () => {
 
 }
 export const getUser = async (id: number) => {
-  const cookieStore = cookies();
-  const token = (await cookieStore).get("access_token")?.value;
 
-  const res = await fetch(`${process.env.BACKEND_URL}/api/users/${id}`, {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/users/${id}`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -60,10 +55,8 @@ export const getUser = async (id: number) => {
 }
 
 export const updateUser = async (id: string, user: any) => {
-  const cookieStore = cookies();
-  const token = (await cookieStore).get("access_token")?.value;
 
-  const res = await fetch(`${process.env.BACKEND_URL}/api/users/${id}`, {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/users/${id}`, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
