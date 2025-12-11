@@ -16,8 +16,16 @@ export class AuthController {
   @ApiResponse({ status: 201, description: 'User object created' })
   @SkipAuth()
   @Post('register')
-  register(@Body() registerDto: RegisterDto) {
-    return this.authService.register(registerDto);
+  async register(@Body() registerDto: RegisterDto, @Res({ passthrough: true }) res: Response) {
+    const newUser = await this.authService.register(registerDto);
+    
+    const { accessToken, refreshToken } = await this.authService.getTokens(
+      newUser.id.toString(),
+      newUser.email,
+    );
+
+    CookieHelper.setAuthCookies(res, accessToken, refreshToken);
+    return newUser
   }
   
   @ApiOperation({ summary: 'Log in for user (create the access_token cookies)' })
