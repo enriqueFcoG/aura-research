@@ -11,14 +11,14 @@ httpOnly: true,
   maxAge: 1000 * 60 * 15,
     });
 
-    res.cookie('refresh_token', refreshToken, {
-httpOnly: true,
-  secure: true,
-  sameSite: 'none',
-  path: '/',
-  domain: '.herokuapp.com',
-  maxAge: 1000 * 60 * 15,
-    });
+//     res.cookie('refresh_token', refreshToken, {
+// httpOnly: true,
+//   secure: true,
+//   sameSite: 'none',
+//   path: '/',
+//   domain: '.herokuapp.com',
+//   maxAge: 1000 * 60 * 15,
+//     });
 
     console.log("COOKIES CREATED ", accessToken)
   }

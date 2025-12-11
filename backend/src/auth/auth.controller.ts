@@ -28,7 +28,15 @@ export class AuthController {
     req.user.email,
   );
 
-  CookieHelper.setAuthCookies(res, accessToken, refreshToken);
+  // CookieHelper.setAuthCookies(res, accessToken, refreshToken);
+  res.cookie('access_token', accessToken, {
+httpOnly: true,
+  secure: true,
+  sameSite: 'none',
+  path: '/',
+  domain: '.herokuapp.com',
+  maxAge: 1000 * 60 * 15,
+    });
 
   return { message: 'Login success' };
   }
