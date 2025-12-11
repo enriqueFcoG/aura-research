@@ -19,7 +19,7 @@ export const  getUsers = async () => {
 }
 export const getCurrentUser = async () => {
   try {
-      const res = await fetch(`${process.env.BACKEND_URL}/api/users/me`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/users/me`, {
     method: "GET",
     credentials: "include",
     cache: "no-store",
