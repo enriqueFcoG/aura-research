@@ -8,7 +8,7 @@ export default function AuthLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  
+
     useEffect(() => {
       const validateSession = async () => {
         const user = await getCurrentUser()
@@ -16,7 +16,7 @@ export default function AuthLayout({
           redirect("/home") 
         } 
       }
-      validateSession()
+      // validateSession()
     })
 
   return (

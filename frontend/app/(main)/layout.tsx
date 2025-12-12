@@ -19,7 +19,7 @@ export default function MainLayout({
         redirect("/login")
       } 
     }
-    validateSession()
+    // validateSession()
   })
   
   return (
