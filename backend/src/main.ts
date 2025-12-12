@@ -17,7 +17,7 @@ async function bootstrap() {
     next();
   });
   app.enableCors({
-    origin: "https://aura-research.vercel.app",
+    origin: process.env.CLIENT_ORIGIN,
     credentials: true,
   })
   app.setGlobalPrefix('api');
