@@ -1,6 +1,5 @@
 import Link from "next/link";
 import Image from "next/image";
-import { useEffect } from "react";
 import { getCurrentUser } from "@/services/users.service";
 import { redirect } from "next/navigation";
 
