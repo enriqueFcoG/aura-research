@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { getCurrentUser } from "@/services/users.service";
+import { getCurrentUser, validateSession } from "@/services/users.service";
 import { redirect } from "next/navigation";
 
 export default async function MainLayout({
@@ -10,7 +10,7 @@ export default async function MainLayout({
 }>) {
 
   //we are going to check if we have a stored cookie in order to validate if a user is logged in 
-  const user = await getCurrentUser();
+  const user = await validateSession();
   if (!user) {
     redirect("/login");
   }

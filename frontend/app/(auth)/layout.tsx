@@ -1,4 +1,4 @@
-import { getCurrentUser } from "@/services/users.service";
+import { getCurrentUser, validateSession } from "@/services/users.service";
 import { redirect } from "next/navigation";
 
 export default async function AuthLayout({
@@ -7,7 +7,7 @@ export default async function AuthLayout({
   children: React.ReactNode;
 }>) {
 
-  const user = await getCurrentUser();
+  const user = await validateSession();
 
   if (user?.email) {
     redirect("/home");
