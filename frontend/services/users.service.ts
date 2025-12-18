@@ -77,7 +77,7 @@ export const validateSession = async () => {
   const res = await fetch(`${process.env.NEXT_PUBLIC_FRONT_URL}/api/me`, {
     cache: "no-store",
   });
-
+  console.log("res from internal API ", res)
   if (!res.ok) return null;
   return res.json();
 };
