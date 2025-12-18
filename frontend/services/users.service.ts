@@ -74,7 +74,7 @@ export const updateUser = async (id: string, user: any) => {
 }
 
 export const validateSession = async () => {
-  const res = await fetch(`/api/me`, {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_FRONT_URL}/api/me`, {
     cache: "no-store",
   });
 
